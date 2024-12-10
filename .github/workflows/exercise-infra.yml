@@ -11,7 +11,7 @@ on:
 
 env:
 
-  DOCKER_REGISTRY_SERVER_URL: ipicazo.azurecr.io
+  DOCKER_REGISTRY_SERVER_URL: ipicazocr.azurecr.io
   KEY_VAULT_NAME: ipicazo-kv
   IMAGE_NAME: ipicazo-dockerimg
   APP_SERVICE_NAME: ipicazo-appservice
