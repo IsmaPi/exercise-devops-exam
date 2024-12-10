@@ -1,4 +1,4 @@
-name: Deploy Infrastructure 
+name: Deploy Azure Container 
 
 on:
   push:
@@ -19,11 +19,11 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
 
-    - name: Deploy Infrastructure
+    - name: Deploy Bicep Template
       run: |
         az deployment group create \
-          --name ismaAzureExercise \
+          --name ismaexercise \
           --subscription e0b9cada-61bc-4b5a-bd7a-52c606726b3b \
           --resource-group aguadamillas_students_1 \
           --template-file main.bicep \
-          --parameters @parameters.json
+          --parameters @main.parameters.json
