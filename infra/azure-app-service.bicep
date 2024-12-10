@@ -1,21 +1,17 @@
-param location string 
 param name string
+param location string = resourceGroup().location
 param appServicePlanId string
+
 param registryName string
 @secure()
 param registryServerUserName string
 @secure()
 param registryServerPassword string
 param registryImageName string
-param registryImageVersion string = 'latest'
+param registryImageVersion string
 param appSettings array = []
-param appCommandLine string = ''
-@secure()
-param adminUsername string
-@secure()
-param adminPassword string
-
 var dockerAppSettings = [
+  { name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE', value: 'false' }
   { name: 'DOCKER_REGISTRY_SERVER_URL', value: 'https://${registryName}.azurecr.io' }
   { name: 'DOCKER_REGISTRY_SERVER_USERNAME', value: registryServerUserName }
   { name: 'DOCKER_REGISTRY_SERVER_PASSWORD', value: registryServerPassword }
@@ -24,25 +20,13 @@ var dockerAppSettings = [
 resource containerAppService 'Microsoft.Web/sites@2022-03-01' = {
   name: name
   location: location
-  identity: {
-    type: 'SystemAssigned'
-  }
+  kind: 'app'
   properties: {
     serverFarmId: appServicePlanId
-    httpsOnly: true
     siteConfig: {
       linuxFxVersion: 'DOCKER|${registryName}.azurecr.io/${registryImageName}:${registryImageVersion}'
-      alwaysOn: false
-      ftpsState: 'FtpsOnly'
-      appCommandLine: appCommandLine
-      appSettings: union(appSettings, [
-        {name: 'AdminUsername', value: adminUsername}
-        {name: 'AdminPassword', value: adminPassword}
-      ], dockerAppSettings)
+      appCommandLine: ''
+      appSettings: union(appSettings, dockerAppSettings)
     }
   }
 }
-output containerAppServiceHostName string = containerAppService.properties.defaultHostName
-output systemAssignedIdentityPrincipalId string = containerAppService.identity.principalId
-output containerAppServiceId string = containerAppService.identity.principalId
-output containerAppServiceName string = containerAppService.properties.defaultHostName

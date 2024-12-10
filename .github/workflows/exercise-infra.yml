@@ -1,4 +1,4 @@
-name: safebank-infra
+name: Deployment Exercise
 
 on:
   workflow_dispatch:
@@ -67,7 +67,7 @@ jobs:
         resourceGroupName: ${{ env.RESOURCE_GROUP_DEV }}
         template: ./main.bicep
         parameters: >
-          ./infra/exercise-parameters.json
+          ./infra/exercise-parameters.bicepparam
 
 
   build-push-image:
