@@ -1,4 +1,4 @@
-name: Deployment Exercise
+name: deploy-infra-exercise
 
 on:
   workflow_dispatch:

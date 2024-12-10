@@ -14,7 +14,7 @@ param keyVaultRoleAssignments = [
 ]
 
 // Container Registry
-param registryName = 'ipicazo-acr'
+param registryName = 'ipicazocr'
 param containerRegistryUsernameSecretName = 'ipicazo-cr-username'
 param containerRegistryPassword0SecretName = 'ipicazo-cr-password0'
 param containerRegistryPassword1SecretName = 'ipicazo-cr-password1'
