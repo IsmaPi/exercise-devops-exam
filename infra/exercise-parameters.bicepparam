@@ -4,7 +4,7 @@ using '../main.bicep'
 param appServicePlanName = 'appServicePlan'
 
 // Key Vault
-param keyVaultName = 'ismaexercise-kv'
+param keyVaultName = 'ipicazo-kv'
 param keyVaultRoleAssignments = [
   {
     principalId: '25d8d697-c4a2-479f-96e0-15593a830ae5' // BCSAI2024-DEVOPS-STUDENTS-A-SP
@@ -14,12 +14,12 @@ param keyVaultRoleAssignments = [
 ]
 
 // Container Registry
-param registryName = 'ismaexerciseacr'
-param containerRegistryUsernameSecretName = 'ismaexercise-cr-username'
-param containerRegistryPassword0SecretName = 'ismaexercise-cr-password0'
-param containerRegistryPassword1SecretName = 'ismaexercise-cr-password1'
+param registryName = 'ipicazo-acr'
+param containerRegistryUsernameSecretName = 'ipicazo-cr-username'
+param containerRegistryPassword0SecretName = 'ipicazo-cr-password0'
+param containerRegistryPassword1SecretName = 'ipicazo-cr-password1'
 
 // Container App Service
-param containerName = 'ismaexercise-appservice'
-param dockerRegistryImageName = 'ismaexercise-dockerimg'
+param containerName = 'ipicazo-appservice'
+param dockerRegistryImageName = 'ipicazo-dockerimg'
 param dockerRegistryImageVersion = 'latest'
